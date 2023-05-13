@@ -2,9 +2,66 @@
 layout: default
 ---
 
-<div class="container text-center">
-  <h1>404</h1>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<!doctype html>
+<html>
+  <head>
+    <title>Blabbers Game Builds</title>
+  </head>
+  <body>
+  <h2><p id="gameName"></p></h2>    
+    <!--<p>This is an example paragraph. Anything in the <strong>body</strong> tag will appear on the page, just like this <strong>p</strong> tag and its contents.</p>-->
+    <div id="buildLinks">
+        <!--<a id="buildLink_1"><p id="buildName_1"></p></a>-->
+    </div>
+  </body>
+</html>
 
-  <p><strong>Page not found :(</strong></p>
-  <p>The requested page could not be found.</p>
-</div>
+<script>
+    const gameGitName = "methodical-firefighter";
+    //------
+    let gameBuildFolderNames = [    
+        {folder: 'Build_Release', date: '04/05/2023 14:28:48', person: 'Jesse'},
+        {folder: 'Build_Release_v1', date: '24/04/2023 01:01:44', person: 'Jesse'},
+        {folder: 'Build_Actual_ReleaseCandidate', date: '23/04/2023 04:26:29', person: 'Jesse'},
+        {folder: 'Build_RC_4', date: '21/04/2023 14:35:37', person: 'Jesse'},
+        {folder: 'Build_RC_3', date: '21/04/2023 14:10:22', person: 'Jesse'},
+        {folder: 'Build_RC_2', date: '21/04/2023 12:19:16', person: 'Jesse'},
+        {folder: 'Build_ReleaseCandidate_FullStackTrace', date: '21/04/2023 02:44:54', person: 'Jesse'},
+        {folder: 'Build_ReleaseCandidate', date: '21/04/2023 02:24:23', person: 'Jesse'},
+        {folder: 'B0.99b_NowGoPlease', date: '20/04/2023 15:43:00', person: 'Caiou'},
+        {folder: 'B0.99_NowGoPlease', date: '20/04/2023 14:34:17', person: 'Caiou'},
+        {folder: 'B0.98b_MoreDefeatTests', date: '20/04/2023 09:46:47', person: 'Caiou'},
+        {folder: 'B0.98_MoreDefeatTests', date: '20/04/2023 08:55:25', person: 'Caiou'},
+        {folder: 'Build_TestIfResetWorksProperly', date: '19/04/2023 14:00:17', person: 'Caiou'},
+        {folder: 'Build_CompleteGameFlow', date: '19/04/2023 11:22:03', person: 'Caiou'},
+        {folder: 'Build_TestLevelEndBug', date: '19/04/2023 09:03:41', person: 'Caiou'},
+        {folder: 'Build_RC_MissingSomeBugfixes', date: '18/04/2023 00:43:07', person: 'Jesse'},
+        {folder: 'Build_LessEnemiesLevel1', date: '17/04/2023 18:31:27', person: 'Jesse'},
+        {folder: 'Build_NewBuildings_and_TexQualityUp', date: '17/04/2023 12:47:12', person: 'Jesse'},
+        {folder: 'Perf_Level1CombinedMesh', date: '14/04/2023 17:33:53', person: 'Jesse'},
+        {folder: 'Perf_Level1NoExtraCityProps', date: '14/04/2023 16:15:39', person: 'Jesse'},
+    ];
+
+    for (let i = 0; i < gameBuildFolderNames.length; i++)
+    {   
+        let build = gameBuildFolderNames[i];
+        //------
+        const harnessURL = "https://app.legendsoflearning.com/developers/harness?url="        
+        const gameURL = "https://blabbers.github.io/"+gameGitName+"/"+build.folder;
+        const langAttachText = "&langUrl="
+        const langFileSubfolderURL = "/StreamingAssets/language.json"
+        const fullAddressURL = ""+ harnessURL + gameURL + langAttachText + gameURL + langFileSubfolderURL;    
+        //------
+        document.getElementById("gameName").innerHTML = (gameGitName + " Builds").toUpperCase();
+        console.log("teste"+i);
+
+        //var rbc = '<h3>Type your radio button here';
+        let newNode = document.createElement("div");
+        newNode.innerHTML = '<a href='+fullAddressURL+'><b>'+build.folder+'</b></a> -' + build.date + ', by: ' + build.person;
+        document.getElementById('buildLinks').appendChild(newNode);	
+    }
+    
+</script>
